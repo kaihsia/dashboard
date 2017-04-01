@@ -1,4 +1,5 @@
 import React from 'react'
+import MapView from './MapView'
 import { Link } from 'react-router'
 
 class Map extends React.Component {
@@ -13,7 +14,7 @@ class Map extends React.Component {
     return <div style={{ margin: '0 auto' }} >
       {loading}
       <h2>{incidents.length} total raheem reports</h2>
-
+      <MapView />
       <button className='btn btn-default' onClick={this.props.filter}>
         Refresh data
       </button>
