@@ -14,12 +14,8 @@ class Map extends React.Component {
     return (
       <div style={{ margin: '0 auto' }} >
       {loading}
-<<<<<<< HEAD
-      <h2>{incidents.length} total raheem reports</h2>
-      <MapView />
-=======
       <h2>{incidents ? incidents.length : 0} total raheem reports</h2>
->>>>>>> Fixed half-map to full map and added markers
+      <MapView />
       <button className='btn btn-default' onClick={this.props.filter}>
         Refresh data
       </button>
