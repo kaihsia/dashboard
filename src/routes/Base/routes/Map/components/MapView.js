@@ -1,8 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './Map.scss'
-import ReactMapboxGl, { Layer, ScaleControl, ZoomControl, Cluster, Marker } from "react-mapbox-gl";
-// const position = [37.78, -122.40]
+import ReactMapboxGl, { ScaleControl, ZoomControl, Cluster, Marker } from "react-mapbox-gl";
 
 // DUMMY COORDS
 const markerCoord = [
@@ -11,8 +10,7 @@ const markerCoord = [
   [-22.403779, 67.781743],
   [-42.403779, 77.781743]
 ];
-
-// const coords = [-42.403779, 77.781743]
+const center = [ -122.403779, 37.781743 ];
 
 const markerStyles = {
   width: 30,
@@ -37,11 +35,9 @@ const clusterStyles = {
     border: '2px solid #56C498'
 };
 
-const center = [ -122.403779, 37.781743 ];
 export default class MapView extends React.Component {
   constructor(props) {
     super(props)
-
     this.onMarkerClick.bind(this);
     this.clusterMarker.bind(this);
   }
@@ -58,8 +54,11 @@ export default class MapView extends React.Component {
     </Marker>
   );
 
+
   render() {
-    console.log('incidents', this.props.incidents);
+      const { incidents } = this.props
+      // console.log(incidents);
+
     return (
       <ReactMapboxGl
         style="mapbox://styles/mapbox/streets-v8"
@@ -74,19 +73,19 @@ export default class MapView extends React.Component {
           <ZoomControl/>
           <Cluster ClusterMarkerFactory={this.clusterMarker} clusterThreshold={8}>
             {
-              markerCoord.map((coords, key) => (
+              incidents.map((incident, key) => (
                 <Marker
                   key={key}
                   style={markerStyles}
                   className="test"
-                  coordinates={coords}
+                  coordinates={[incident.longitude, incident.latitude ]}
                   onclick={this.onMarkerClick}>
-                  Kai
+                  {incident.address}
+                  {incident.description}
                 </Marker>
               ))
             }
           </Cluster>
-
       </ReactMapboxGl>
     )
   }

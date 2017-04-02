@@ -15,7 +15,7 @@ class Map extends React.Component {
       <div style={{ margin: '0 auto' }} >
       {loading}
       <h2>{incidents ? incidents.length : 0} total raheem reports</h2>
-      <MapView />
+      <MapView incidents={incidents} foo="hello" />
       <button className='btn btn-default' onClick={this.props.filter}>
         Refresh data
       </button>
@@ -25,7 +25,6 @@ class Map extends React.Component {
       </Link>
 
       {this.props.children}
-      <MapView incidents={incidents} />
     </div>
     )
   }
