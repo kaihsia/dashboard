@@ -29,7 +29,7 @@ class Map extends React.Component {
       </Link>
 
       {this.props.children}
-           <MapView />
+      <MapView incidents={incidents} />
     </div>
     )
   }
