@@ -11,9 +11,11 @@ const mapDispatchToProps = {
   toggleMenu,
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
+  const id = parseInt(props.routeParams.id, 10)
+  const incident = state.map.incidents.find(i => i.id === id)
   return ({
-    isOpen : state.incident.isOpen
+    incident,
   })
 }
 

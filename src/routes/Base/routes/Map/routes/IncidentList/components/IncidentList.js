@@ -6,7 +6,10 @@ class IncidentList extends React.Component {
   }
 
   renderIncident(incident) {
-    return <p key={incident.slug}>{incident.reactions_list}</p>
+    console.log('INc', incident)
+    return <p key={incident.slug}>
+        {incident.description} - <Link to={`/base/map/incident/${incident.id}`}>View details</Link>
+      </p>
   }
 
   render() {

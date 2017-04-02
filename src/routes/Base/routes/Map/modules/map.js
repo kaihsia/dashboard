@@ -1,4 +1,6 @@
 import { loop, Effects } from 'redux-loop';
+const querystring = require('querystring')
+
 import config from '../../../../../config'
 
 // ------------------------------------
@@ -25,7 +27,10 @@ export function filter (params) {
     type : FILTER,
     payload : {
       method: 'GET',
-      endpoint: config.apiServerUrl + '/incidents?write_key=' + config.apiWriteKey,
+      endpoint: config.apiServerUrl + '/incidents?' + querystring.stringify({
+        ...params,
+        write_key: config.apiWriteKey
+      }),
       params
     },
   }
@@ -88,6 +93,7 @@ function filterEffect({ payload: { method, endpoint, params } }) {
   return fetch(endpoint, { method })
     .then(res => (console.log('resss', res), res.json()))
     .then(json => {
+      console.log('DATA', json)
       return {
         type: FILTER_SUCCESS,
         payload: { data: json.data, sent: params },

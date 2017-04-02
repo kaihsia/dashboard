@@ -1,13 +1,16 @@
 import React from 'react'
 
-export const Incident = (props) => (
-  <div style={{ margin: '0 auto' }} >
-    <h2>Incident</h2>
-    <button className='btn btn-default' onClick={props.toggleMenu}>
-      Toggle menu {props.isOpen ? 'closed' : 'open'}
-    </button>
-  </div>
-)
+export const Incident = (props) => {
+  if (! props.incident) {
+    return <p>Loading...</p>
+  }
+  return (
+    <div style={{ margin: '0 auto' }} >
+      <h2>Incident</h2>
+      <p>{props.incident.description}</p>
+    </div>
+  )
+}
 
 Incident.propTypes = {
   isOpen     : React.PropTypes.bool.isRequired,
