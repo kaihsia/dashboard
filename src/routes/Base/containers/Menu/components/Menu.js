@@ -8,6 +8,7 @@ export const Menu = (props) => (
     <button className='btn btn-default' onClick={props.toggleMenu}>
       Toggle menu {props.isOpen ? 'closed' : 'open'}
     </button>
+    <Chat />
   </div>
 )
 
